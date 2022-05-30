@@ -5,7 +5,8 @@ app = Flask(__name__)
 
 @app.route('/inicio')
 def hello_world():
-    return render_template('lista.html', titulo='Jogos')
+    lista = ['God of War', 'Skyrim', 'Valorant']
+    return render_template('lista.html', titulo='Jogos', jogos=lista)
 
 
 app.run()
