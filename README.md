@@ -1,2 +1,2 @@
 # jogoteca-flask
-First crud in Python using flask for a list
+First crud in Python using flask for a game list
