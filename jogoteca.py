@@ -36,6 +36,19 @@ def criar():
     return redirect('/')
 
 
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+
+@app.route('/autenticar', methods=['POST', ])
+def autenticar():
+    if 'alohomora' == request.form['senha']:
+        return redirect('/')
+    else:
+        return redirect('/login')
+
+
 # app.run()
 app.run(debug=True)  # no need to rerun
 # app.run(host='0.0.0.0', port=8080)
