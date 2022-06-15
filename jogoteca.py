@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, session, flash
 
 
 class Jogo:
@@ -14,6 +14,8 @@ jogo3 = Jogo('Mortal Kombat', 'Luta', 'PS2')
 lista = [jogo1, jogo2, jogo3]
 
 app = Flask(__name__)
+# encryption layer secret key on the website
+app.secret_key = 'alura'
 
 
 @app.route('/')
@@ -44,8 +46,12 @@ def login():
 @app.route('/autenticar', methods=['POST', ])
 def autenticar():
     if 'alohomora' == request.form['senha']:
+        # retain information for more than one request cycle by storing the information in browser cookies.
+        session['usuario_logado'] = request.form['usuario']
+        flash(request.form['usuario'] + ' logou com sucesso!')
         return redirect('/')
     else:
+        flash('Usuário não logado.')
         return redirect('/login')
 
 
