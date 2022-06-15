@@ -1,23 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Jogoteca</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
-</head>
-<body>
-<div class="container">
-
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <ul id="messages" class="list-unstyled">
-                {% for message in messages %}
-                    <li class="alert alert-success">{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-    {% endwith %}
+{% extends "template.html" %}
+{% block conteudo %}
 
     <h1>Faça seu login</h1>
     <form method="POST" action="/autenticar">
@@ -25,6 +7,4 @@
         <p><label>Senha:</label> <input class="form-control" type="password" name="senha" required></p>
         <p><button class="btn btn-primary" type="submit">Entrar</button></p>
     </form>
-</div>
-</body>
-</html>
+{% endblock %}
