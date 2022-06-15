@@ -45,7 +45,7 @@ def criar():
 @app.route('/login')
 def login():
     proxima = request.args.get('proxima')
-    return redirect(url_for('login'))
+    return render_template('login.html', proxima=proxima)
 
 
 @app.route('/autenticar', methods=['POST', ])
@@ -59,7 +59,7 @@ def autenticar():
         return redirect(proxima_pagina)
     else:
         flash('Usuário não logado.')
-        return redirect('/login')
+        return redirect(url_for('login'))
 
 
 @app.route('/logout')
