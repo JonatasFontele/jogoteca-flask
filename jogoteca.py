@@ -13,6 +13,24 @@ jogo2 = Jogo('God of War', 'Rack n Slash', 'PS2')
 jogo3 = Jogo('Mortal Kombat', 'Luta', 'PS2')
 lista = [jogo1, jogo2, jogo3]
 
+
+class Usuario:
+    def __init__(self, nome, nickname, senha):
+        self.nome = nome
+        self.nickname = nickname
+        self.senha = senha
+
+
+usuario1 = Usuario("Jonatas Fontele", "JonyTest", "alohomora")
+usuario2 = Usuario("Tester2", "Test2", "test")
+usuario3 = Usuario("Tester3", "Test3", "test")
+
+
+usuarios = { usuario1.nickname : usuario1,
+             usuario2.nickname : usuario2,
+             usuario3.nickname : usuario3 }
+
+
 app = Flask(__name__)
 # encryption layer secret key on the website
 app.secret_key = 'alura'
@@ -50,13 +68,13 @@ def login():
 
 @app.route('/autenticar', methods=['POST', ])
 def autenticar():
-    if 'alohomora' == request.form['senha']:
-        # retain information for more than one request cycle by storing the information in browser cookies.
-        session['usuario_logado'] = request.form['usuario']
-        flash(request.form['usuario'] + ' logou com sucesso!')
-        proxima_pagina = request.form['proxima']
-        # return redirect('/{}'.format(proxima_pagina))
-        return redirect(proxima_pagina)
+    if request.form['usuario'] in usuarios:
+        usuario = usuarios[request.form['usuario']]
+        if request.form['senha'] == usuario.senha:
+            session['usuario_logado'] = usuario.nickname
+            flash(usuario.nickname + ' logado com sucesso!')
+            proxima_pagina = request.form['proxima']
+            return redirect(proxima_pagina)
     else:
         flash('Usuário não logado.')
         return redirect(url_for('login'))
