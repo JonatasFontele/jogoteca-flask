@@ -25,11 +25,9 @@ usuario1 = Usuario("Jonatas Fontele", "JonyTest", "alohomora")
 usuario2 = Usuario("Tester2", "Test2", "test")
 usuario3 = Usuario("Tester3", "Test3", "test")
 
-
-usuarios = { usuario1.nickname : usuario1,
-             usuario2.nickname : usuario2,
-             usuario3.nickname : usuario3 }
-
+usuarios = {usuario1.nickname: usuario1,
+            usuario2.nickname: usuario2,
+            usuario3.nickname: usuario3}
 
 app = Flask(__name__)
 # encryption layer secret key on the website
